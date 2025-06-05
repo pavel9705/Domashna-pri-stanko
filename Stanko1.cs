@@ -1,22 +1,18 @@
-﻿// Преобразуване между двоична и десетична бройна система
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
-class Stanko1
+class Stanko2
 {
     static void Main()
     {
-        Console.Write("Enter number: ");
-        string input = Console.ReadLine();
-        Console.Write("Choose mode (1 - binary to decimal, 2 - decimal to binary): ");
-        int mode = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter numbers separated by spaces:");
+        List<double> numbers = Console.ReadLine().Split().Select(double.Parse).ToList();
 
-        if (mode == 1)
-        {
-            Console.WriteLine($"Decimal: {Convert.ToInt32(input, 2)}");
-        }
-        else
-        {
-            Console.WriteLine($"Binary: {Convert.ToString(int.Parse(input), 2)}");
-        }
+        double mean = numbers.Average();
+        double median = numbers.OrderBy(n => n).ElementAt(numbers.Count / 2);
+        double mode = numbers.GroupBy(n => n).OrderByDescending(g => g.Count()).First().Key;
+
+        Console.WriteLine($"Mean: {mean:F2}, Mode: {mode}, Median: {median}");
     }
 }
