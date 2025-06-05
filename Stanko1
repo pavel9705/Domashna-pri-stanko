@@ -1,22 +1,28 @@
-// Преобразуване между двоична и десетична бройна система
 using System;
 
 class Stanko1
 {
     static void Main()
     {
-        Console.Write("Enter number: ");
+        Console.WriteLine("Enter a number:");
         string input = Console.ReadLine();
-        Console.Write("Choose mode (1 - binary to decimal, 2 - decimal to binary): ");
-        int mode = int.Parse(Console.ReadLine());
 
-        if (mode == 1)
+        Console.WriteLine("Choose: 1 - Decimal to another base, 2 - Another base to decimal");
+        int choice = int.Parse(Console.ReadLine());
+
+        if (choice == 1)
         {
-            Console.WriteLine($"Decimal: {Convert.ToInt32(input, 2)}");
+            Console.Write("Enter target base (2 to 16): ");
+            int toBase = int.Parse(Console.ReadLine());
+            int number = int.Parse(input);
+            Console.WriteLine($"Result: {Convert.ToString(number, toBase)}");
         }
         else
         {
-            Console.WriteLine($"Binary: {Convert.ToString(int.Parse(input), 2)}");
+            Console.Write("Enter source base: ");
+            int fromBase = int.Parse(Console.ReadLine());
+            int number = Convert.ToInt32(input, fromBase);
+            Console.WriteLine($"Decimal: {number}");
         }
     }
 }
