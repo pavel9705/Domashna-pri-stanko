@@ -1,34 +1,26 @@
-﻿// hint: Намира реалните корени на полином от втора степен
 using System;
-using System.Linq;
 
 class Stanko4
 {
     static void Main()
     {
-        Console.Write("Enter polynomial coefficients separated by ',': ");
-        var coeffs = Console.ReadLine().Split(',').Select(double.Parse).ToArray();
+        Console.WriteLine("Enter 3 coefficients for ax^2 + bx + c (separated by space):");
+        string[] parts = Console.ReadLine().Split();
+        double a = double.Parse(parts[0]);
+        double b = double.Parse(parts[1]);
+        double c = double.Parse(parts[2]);
 
-        if (coeffs.Length != 3)
-        {
-            Console.WriteLine("Only quadratic (2nd degree) polynomials are supported.");
-            return;
-        }
+        double discriminant = b * b - 4 * a * c;
 
-        double a = coeffs[0], b = coeffs[1], c = coeffs[2];
-        double d = b * b - 4 * a * c;
-
-        if (d > 0)
-        {
-            Console.WriteLine($"Roots: {(-b + Math.Sqrt(d)) / (2 * a)}, {(-b - Math.Sqrt(d)) / (2 * a)}");
-        }
-        else if (d == 0)
-        {
-            Console.WriteLine($"Root: {(-b / (2 * a))}");
-        }
+        if (discriminant < 0)
+            Console.WriteLine("No real roots.");
+        else if (discriminant == 0)
+            Console.WriteLine($"One root: {-b / (2 * a)}");
         else
         {
-            Console.WriteLine("No real roots");
+            double root1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            double root2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+            Console.WriteLine($"Roots: {root1}, {root2}");
         }
     }
 }
