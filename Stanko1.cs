@@ -1,0 +1,22 @@
+﻿// Преобразуване между двоична и десетична бройна система
+using System;
+
+class Stanko1
+{
+    static void Main()
+    {
+        Console.Write("Enter number: ");
+        string input = Console.ReadLine();
+        Console.Write("Choose mode (1 - binary to decimal, 2 - decimal to binary): ");
+        int mode = int.Parse(Console.ReadLine());
+
+        if (mode == 1)
+        {
+            Console.WriteLine($"Decimal: {Convert.ToInt32(input, 2)}");
+        }
+        else
+        {
+            Console.WriteLine($"Binary: {Convert.ToString(int.Parse(input), 2)}");
+        }
+    }
+}
