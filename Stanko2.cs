@@ -1,18 +1,18 @@
-﻿// hint: Изчислява средно аритметично, медиана и мода
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 class Stanko2
 {
     static void Main()
     {
-        Console.Write("Enter numbers separated by ',': ");
-        var numbers = Console.ReadLine().Split(',').Select(double.Parse).ToList();
+        Console.WriteLine("Enter numbers separated by spaces:");
+        List<double> numbers = Console.ReadLine().Split().Select(double.Parse).ToList();
 
-        double average = numbers.Average();
-        double median = numbers.OrderBy(x => x).ElementAt(numbers.Count / 2);
-        double mode = numbers.GroupBy(x => x).OrderByDescending(g => g.Count()).First().Key;
+        double mean = numbers.Average();
+        double median = numbers.OrderBy(n => n).ElementAt(numbers.Count / 2);
+        double mode = numbers.GroupBy(n => n).OrderByDescending(g => g.Count()).First().Key;
 
-        Console.WriteLine($"Average: {average}, Median: {median}, Mode: {mode}");
+        Console.WriteLine($"Mean: {mean:F2}, Mode: {mode}, Median: {median}");
     }
 }
